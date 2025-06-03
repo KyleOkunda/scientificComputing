@@ -10,5 +10,4 @@ plt.xlabel("Days of the week")
 plt.ylabel("Temp Values")
 plt.grid(True)
 
-fig = plt.show()
-print(fig)
+plt.show()
