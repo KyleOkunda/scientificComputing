@@ -1,0 +1,42 @@
+import os
+
+def process_file_with_error_handling():
+
+  input_filename = input("Please enter the name of the input file (e.g., input.txt): ")
+  output_filename = "modified_" + os.path.basename(input_filename)
+
+  try:
+    # 1. Error Handling Lab: Ask for filename and handle file-not-found errors.
+    with open(input_filename, 'r') as file:
+      print(f"\nSuccessfully opened and reading '{input_filename}'...")
+      
+      # Read the entire content of the file
+      content = file.read()
+      print("Original content:")
+      print("-" * 20)
+      print(content)
+      print("-" * 20)
+
+      # 2. File Read & Write Challenge: Modify the content.
+      # Example modification: convert to uppercase. You can change this.
+      modified_content = content.upper()
+
+    # Write the modified content to a new file
+    with open(output_filename, 'w') as new_file:
+      new_file.write(modified_content)
+      print(f"\nSuccessfully wrote modified content to '{output_filename}'.")
+      
+  except FileNotFoundError:
+    # Handle the specific error if the file doesn't exist.
+    print(f"\nError: The file '{input_filename}' was not found.")
+    print("Please make sure the file exists in the same directory as this script.")
+  except IOError as e:
+    # Handle other I/O related errors (e.g., permission issues).
+    print(f"\nAn I/O error occurred: {e}")
+  except Exception as e:
+    # A generic catch-all for any other unexpected errors.
+    print(f"\nAn unexpected error occurred: {e}")
+
+# Run the function
+if __name__ == "__main__":
+  process_file_with_error_handling()
